@@ -911,6 +911,12 @@ const PERFILES = [
   { u:"lu_fainboim", seg:28000, segTxt:"28 mil",
     quien:"Lucía Fainboim, especialista en ciudadanía y crianza digital, fundadora de la consultora Bienestar Digital y autora de “Cuidar las infancias en la era digital”",
     contacto:[{t:"txt", v:"@bienestardigitalok", nota:"Consultora"}] },
+  { u:"somosaralma", seg:8936,
+    quien:"ARALMA, asociación civil de Boulogne (San Isidro) dedicada a la asistencia, investigación y capacitación en infancias, adolescencias y familias frente a la violencia sexual y el maltrato infantil",
+    contacto:[{t:"web", v:"aralma.org"}] },
+  { u:"almadasoniaok", seg:4348,
+    quien:"Sonia Almada, psicoanalista, fundadora y presidenta de ARALMA y activista por los derechos de las infancias",
+    contacto:[{t:"txt", v:"@somosaralma", nota:"Vía ARALMA"},{t:"web", v:"aralma.org"}] },
   { u:"fundacionlea", seg:4695,
     quien:"Fundación LEA (Lugar por la Educación Argentina), ONG de formación en ciudadanía digital",
     contacto:[{t:"mail", v:"lugarxlaeducacionargentina@gmail.com"},{t:"tel", v:"+54 9 11 2829-9990"}] }
@@ -918,6 +924,7 @@ const PERFILES = [
 const fmtSeg = p => p.segTxt || p.seg.toLocaleString("es-AR");
 function contactoHTML(c){
   if(c.t==="mail") return `<a href="mailto:${esc(c.v)}">${esc(c.v)}</a>`;
+  if(c.t==="web") return `<a href="https://${esc(c.v)}" target="_blank" rel="noopener noreferrer">${esc(c.v)}</a>`;
   if(c.t==="tel") return `<a href="tel:${esc(c.v.replace(/[^+\d]/g,""))}">${esc(c.v)}</a>`;
   return `<span>${esc(c.v)}</span>`;
 }
