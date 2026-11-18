@@ -396,6 +396,56 @@
   .red-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}
   .red-btn.ok{background:var(--exito);border-color:var(--exito);color:#fff}
   @media (max-width:640px){ .red-btn{flex:1;justify-content:center;font-size:13px} .red-chip{width:24px;height:24px} }
+
+  /* ---------- Perfiles de la temática ---------- */
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  nav.secciones .wrap{grid-template-columns:repeat(5,1fr)}
+  .tabla-perfiles{background:#fff;border:1px solid var(--borde);border-radius:16px;box-shadow:var(--sombra);overflow:hidden}
+  .tabla-perfiles table{width:100%;border-collapse:collapse;font-size:14px}
+  .tabla-perfiles th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--texto2);
+    background:var(--fondo);padding:12px 16px;border-bottom:1px solid var(--borde)}
+  .tabla-perfiles td{padding:16px;border-bottom:1px solid var(--borde);vertical-align:top;line-height:1.45}
+  .tabla-perfiles tr:last-child td{border-bottom:0}
+  .tabla-perfiles tbody tr{transition:background var(--t)}
+  .tabla-perfiles tbody tr:hover{background:#FAFCFD}
+  .tabla-perfiles .num{text-align:right;white-space:nowrap}
+  .tabla-perfiles td.num b{font-size:18px;font-weight:800;color:var(--azul);font-variant-numeric:tabular-nums}
+  .tabla-perfiles th:nth-child(1){width:21%} .tabla-perfiles th:nth-child(2){width:34%} .tabla-perfiles th:nth-child(3){width:11%}
+  .ig-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--azul);text-decoration:none;min-height:44px;word-break:break-all}
+  .ig-link:hover span:last-child{text-decoration:underline}
+  .ig-ico{flex:0 0 36px;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--azul),var(--azul-2));color:#fff}
+  .ig-ico svg{width:18px;height:18px}
+  .tag-politica{display:table;margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:#fff;background:var(--error);border-radius:999px;padding:4px 10px;line-height:1.4}
+  tr.politica td:first-child{box-shadow:inset 4px 0 0 var(--error)}
+  ul.contactos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  ul.contactos li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+  ul.contactos small{flex:0 0 100%;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--texto2)}
+  ul.contactos a{color:var(--enlace);word-break:break-all}
+  .mini-copiar{font:inherit;font-size:12px;font-weight:500;min-height:32px;padding:0 10px;border-radius:8px;cursor:pointer;
+    background:#fff;color:var(--enlace);border:1px solid var(--borde-campo)}
+  .mini-copiar:hover{border-color:var(--enlace)}
+  .mini-copiar.ok{background:var(--exito);border-color:var(--exito);color:#fff}
+  .sin-dato{color:var(--texto2);font-style:italic}
+  @media (max-width:640px){
+    nav.secciones .wrap{display:flex;overflow-x:auto;scrollbar-width:none;gap:6px}
+    nav.secciones .wrap::-webkit-scrollbar{display:none}
+    nav.secciones button{flex:0 0 auto;padding:0 14px}
+    .tabla-perfiles{background:none;border:0;box-shadow:none;overflow:visible}
+    .tabla-perfiles thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    .tabla-perfiles table,.tabla-perfiles tbody,.tabla-perfiles tr,.tabla-perfiles td{display:block;width:auto}
+    .tabla-perfiles tr{background:#fff;border:1px solid var(--borde);border-radius:14px;box-shadow:var(--sombra);margin-bottom:12px;padding:6px 14px;position:relative;overflow:hidden}
+    .tabla-perfiles td{border-bottom:1px solid var(--borde);padding:10px 0}
+    .tabla-perfiles td.cuenta{padding-right:90px}
+    .tabla-perfiles td.num{position:absolute;top:16px;right:14px;border:0;padding:0;text-align:right}
+    .tabla-perfiles td.num::after{content:"seguidores";display:block;font-size:11px;color:var(--texto2)}
+    .tabla-perfiles td:not(.cuenta):not(.num)::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;color:var(--texto2);margin-bottom:4px}
+    tr.politica{box-shadow:inset 4px 0 0 var(--error),var(--sombra)}
+    tr.politica td:first-child{box-shadow:none}
+    .mini-copiar{min-height:36px}
+  }
 </style>
 </head>
 <body>
@@ -417,6 +467,7 @@
     <button type="button" role="tab" id="tab-invitados" aria-controls="sec-invitados" aria-selected="false">Invitados<span class="cnt" id="c-invitados"></span></button>
     <button type="button" role="tab" id="tab-conduccion" aria-controls="sec-conduccion" aria-selected="false">Conducción<span class="cnt">2</span></button>
     <button type="button" role="tab" id="tab-fuerzas" aria-controls="sec-fuerzas" aria-selected="false">Fuerzas<span class="cnt">3</span></button>
+    <button type="button" role="tab" id="tab-perfiles" aria-controls="sec-perfiles" aria-selected="false">Perfiles<span class="cnt" id="c-perfiles"></span></button>
   </div>
 </nav>
 
@@ -493,6 +544,20 @@
   <section id="sec-fuerzas" class="panel-sec" role="tabpanel" aria-labelledby="tab-fuerzas" hidden>
     <p class="sub">Efectivos y expertos que participaron de los allanamientos.</p>
     <div class="grid-l" id="fuerzas"></div>
+  </section>
+  <!-- PERFILES DE LA TEMÁTICA -->
+  <section id="sec-perfiles" class="panel-sec" role="tabpanel" aria-labelledby="tab-perfiles" hidden>
+    <div class="estado-filtros">
+      <span>Perfiles de la temática: cuentas de Instagram que hablan sobre grooming y protección de las infancias en línea. Seguidores al 18/11/2026.</span>
+      <button type="button" class="btn prim" id="copiar-perfiles">Copiar listado</button>
+    </div>
+    <div class="tabla-perfiles">
+      <table>
+        <caption class="sr">Perfiles de la temática</caption>
+        <thead><tr><th scope="col">Cuenta</th><th scope="col">Quién es</th><th scope="col" class="num">Seguidores</th><th scope="col">Contacto público</th></tr></thead>
+        <tbody id="perfiles"></tbody>
+      </table>
+    </div>
   </section>
 </main>
 
@@ -825,6 +890,50 @@ dlg.addEventListener("touchend", e => {
   if(x0===null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null;
   if(Math.abs(dx) > 60 && lista.length > 1) mostrar(actual + (dx < 0 ? 1 : -1));
 });
+
+// ---------- perfiles de la temática ----------
+const PERFILES = [
+  { u:"groominghcd", seg:1687,
+    quien:"Instituto de Políticas Públicas de Prevención de Grooming de la Cámara de Diputados de la Provincia de Buenos Aires (dirigido por Roxana Domínguez)",
+    contacto:[{t:"tel", v:"011 6031-0660"},{t:"mail", v:"prensahcd@hcdiputados-ba.gov.ar"}] },
+  { u:"icmec_official", seg:4325,
+    quien:"International Centre for Missing & Exploited Children (ICMEC), organización internacional con sede en EE.UU.",
+    contacto:[{t:"mail", v:"LACinformation@icmec.org", nota:"América Latina"},{t:"mail", v:"media@icmec.org", nota:"Prensa"}] },
+  { u:"josefinaignaciook", seg:2325,
+    quien:"María Josefina Ignacio, comisionada del Comité Nacional para la Prevención de la Tortura y vicepresidenta de la Asociación Pensamiento Penal",
+    contacto:[] },
+  { u:"paduloluciana", seg:3690, politica:"Diputada provincial · FR en Fuerza Patria",
+    quien:"Luciana Padulo, diputada provincial de Buenos Aires",
+    contacto:[{t:"mail", v:"lpadulo@hcdiputados-ba.gov.ar"},{t:"txt", v:"Legislatura, internos 3484 / 3486"}] },
+  { u:"fedecermelo", seg:11300, segTxt:"11,3 mil",
+    quien:"Federico Cermelo, abogado y docente de Mar del Plata, especialista en ciudadanía digital y prevención del grooming",
+    contacto:[] },
+  { u:"fundacionlea", seg:4695,
+    quien:"Fundación LEA (Lugar por la Educación Argentina), ONG de formación en ciudadanía digital",
+    contacto:[{t:"mail", v:"lugarxlaeducacionargentina@gmail.com"},{t:"tel", v:"+54 9 11 2829-9990"}] }
+];
+const fmtSeg = p => p.segTxt || p.seg.toLocaleString("es-AR");
+function contactoHTML(c){
+  if(c.t==="mail") return `<a href="mailto:${esc(c.v)}">${esc(c.v)}</a>`;
+  if(c.t==="tel") return `<a href="tel:${esc(c.v.replace(/[^+\d]/g,""))}">${esc(c.v)}</a>`;
+  return `<span>${esc(c.v)}</span>`;
+}
+$("#c-perfiles").textContent = PERFILES.length;
+$("#perfiles").innerHTML = PERFILES.map(p => `<tr${p.politica?' class="politica"':""}>
+  <td class="cuenta" data-l="Cuenta">
+    <a class="ig-link" href="https://www.instagram.com/${encodeURIComponent(p.u)}/" target="_blank" rel="noopener noreferrer">
+      <span class="ig-ico">${IG_SVG}</span><span>@${esc(p.u)}</span>
+    </a>
+  </td>
+  <td data-l="Quién es">${p.politica?`<span class="tag-politica">${esc(p.politica)}</span>`:""}${esc(p.quien)}</td>
+  <td class="num" data-l="Seguidores"><b>${fmtSeg(p)}</b></td>
+  <td data-l="Contacto público">${p.contacto.length
+      ? `<ul class="contactos">${p.contacto.map(c => `<li>${c.nota?`<small>${esc(c.nota)}</small>`:""}${contactoHTML(c)}<button type="button" class="mini-copiar" data-copiar="${esc(c.v)}" data-etq="Contacto copiado" aria-label="Copiar ${esc(c.v)}">Copiar</button></li>`).join("")}</ul>`
+      : `<span class="sin-dato">Sin contacto público</span>`}</td>
+</tr>`).join("");
+$("#copiar-perfiles").addEventListener("click", e => copiar(PERFILES.map(p =>
+  `@${p.u} (${fmtSeg(p)} seguidores) — ${p.quien}${p.politica?` [${p.politica}]`:""}${p.contacto.length?" — Contacto: "+p.contacto.map(c=>c.v).join(" / "):""} — https://www.instagram.com/${p.u}/`
+).join("\n"), e.currentTarget, "Listado copiado"));
 
 // ---------- fuerzas ----------
 $("#fuerzas").innerHTML = FUERZAS.map(f => `<div class="tarjeta">
